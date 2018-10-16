@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
 import Navigation from './components/Navigation/Navigation';
 import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
@@ -21,10 +20,6 @@ const particlesOptions = {
         }
     }
 }
-
-const app = new Clarifai.App({
-    apiKey: 'e05678a90a6e47358981dd35702008cf'
-});
 
 const initialState = {
     input: "",
@@ -87,7 +82,14 @@ class App extends Component {
 
     onButtonSubmit = () => {
         this.setState({ imageURL: this.state.input });
-        app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+        fetch('http://localhost:3000/imageURL', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                imageURL: this.state.input
+            })
+        })
+            .then(response => response.json())
             .then(response => {
                 if (response) {
                     fetch('http://localhost:3000/image', {
@@ -123,7 +125,7 @@ class App extends Component {
             <div className="App">
                 <Particles className="particles" params={particlesOptions} />
                 <div className="header">
-                    <Logo />
+                    {/* <Logo /> */}
                     <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
                 </div>
                 {route === "home" ?
