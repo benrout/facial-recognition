@@ -123,7 +123,7 @@ class App extends Component {
         const { isSignedIn, imageURL, route, box } = this.state;
         return (
             <div className="App">
-                {/* <Particles className="particles" params={particlesOptions} /> */}
+                <Particles className="particles" params={particlesOptions} />
                 <div className="header">
                     <Logo />
                     <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
