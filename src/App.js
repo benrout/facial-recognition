@@ -82,7 +82,7 @@ class App extends Component {
 
     onButtonSubmit = () => {
         this.setState({ imageURL: this.state.input });
-        fetch('http://localhost:3000/imageURL', {
+        fetch('https://protected-gorge-49207.herokuapp.com/imageURL', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -92,7 +92,7 @@ class App extends Component {
             .then(response => response.json())
             .then(response => {
                 if (response) {
-                    fetch('http://localhost:3000/image', {
+                    fetch('https://protected-gorge-49207.herokuapp.com/image', {
                         method: 'put',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -123,9 +123,9 @@ class App extends Component {
         const { isSignedIn, imageURL, route, box } = this.state;
         return (
             <div className="App">
-                <Particles className="particles" params={particlesOptions} />
+                {/* <Particles className="particles" params={particlesOptions} /> */}
                 <div className="header">
-                    {/* <Logo /> */}
+                    <Logo />
                     <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
                 </div>
                 {route === "home" ?
