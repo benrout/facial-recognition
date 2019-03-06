@@ -59,10 +59,6 @@ class App extends Component {
         const image = document.getElementById('inputImage');
         const width = Number(image.width);
         const height = Number(image.height);
-        console.log("top", clarifaiFace.top_row * height);
-        console.log("bottom", clarifaiFace.bottom_row * height);
-        console.log("left", clarifaiFace.left_col * width);
-        console.log("right", clarifaiFace.right_col * width);
         return {
             left: clarifaiFace.left_col * width,
             top: clarifaiFace.top_row * height,
@@ -72,7 +68,6 @@ class App extends Component {
     }
 
     displayFaceBox = (box) => {
-        console.log(box);
         this.setState({ box: box })
     }
 
